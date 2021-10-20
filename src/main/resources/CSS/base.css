@@ -1,0 +1,54 @@
+/**
+ * Project : 도시방재
+ * File Name : base.csscss
+ * 작성 : 손화영
+ * 날짜 : 2019.08.02
+ */
+@CHARSET "UTF-8";
+@font-face{
+	font-family:'KoPubDotumMedium';
+	src:url('/resources/font/KoPubDotumMedium.eot');
+	src:url('/resources/font/KoPubDotumMedium.woff') format('woff'));
+	src:local(※), url('/resources/font/KoPubDotumMedium.woff') format('woff');
+}
+@font-face{
+	font-family:'KoPubDotumBold';
+	src:url('/resources/font/KoPubDotumBold.woff') format('woff'));
+	src:local(※), url('/resources/font/KoPubDotumBold.woff') format('woff');
+}
+/* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+/* = 태그 초기화. */
+/* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+/* reset style [start] */
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, address, big, cite, code, del, dfn, em, font, img, ins, q, s, samp,
+small, strike, strong, sub, sup, tt, var, b, u, i,  dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td
+{margin:0px; padding:0px; border:0px; vertical-align: baseline;z-index:1;} /* vertical-align: baseline; outline: 0; ie 외 브라우저 포커싱 사라지는 문제로 제거 */
+html {height: 100%; overflow: auto; font-size:0.75em;}
+body {height: 100%; font-size:1.05em; color: #414042; background: transparent; font-family:'KoPubDotumBold'', '나눔고딕', Malgun Gothic, '맑은 고딕', dotum, '돋움', gulim, '굴림', verdana, arial, sans-serif; }
+ol, ul, li {list-style: none;}
+blockquote, q {quotes: none;}
+h1,h2,h3,h4,h5,h6 {font-size:100%;}
+
+form,fieldset,button{margin:0;padding:0;border:none}
+a{text-decoration:none;color:#31373f;}
+a:link,a:visited{color:#inherit;text-decoration:none}
+a:hover,a:active,a:focus{text-decoration:none}
+hr{display:none;margin:0;padding:0}
+label{cursor:pointer}
+address,em{font-style:normal;font-weight:normal}
+
+
+
+/* tables still need 'cellspacing="0"' in the markup */
+table {border-collapse:collapse; border-spacing:0px;} /* border-collapse: collapse; ff에서 border="0" 인 경우 문제 발생 */
+address,caption,cite,code,dfn,em,strong,th,var {font-style:normal;} /* font-weight:normal */
+.accessibility, caption, legend {visibility:hidden; overflow:hidden; width:0; height:0; font-size: 0; line-height: 0;}/* 사파리, 크롬  <col width="%" />인식 못하는 버그때문에 꼭 쓰야함 */
+
+
+/* reset style [end] */
+textarea, input {position: relative; border:1px solid #d5d3d0; background-color: #f2f1ef; height: 21px; padding: 4px 5px 0 5px; font-size: 1em; font-family:NanumGothic, '나눔고딕', Malgun Gothic, '맑은 고딕', dotum, '돋움', gulim, '굴림', verdana, arial, sans-serif;}
+select {position: relative; background-color: #f2f1ef; border: 1px solid #c8c8c8; height: 27px; padding: 4px 4px 4px 5px; color: #292929; font-size: 1em; font-family:NanumGothic, '나눔고딕', Malgun Gothic, '맑은 고딕', dotum, '돋움', gulim, '굴림', verdana, arial, sans-serif;}
+hr {display: none;}
+legend { visibility:hidden; height:0; width:0; font-size:0;}
+caption {display: none;}/* caption */
+q:before,q:after {content:'';}

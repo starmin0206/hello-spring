@@ -1,0 +1,548 @@
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <title>(주)다츠 WaterdataFlatform</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=1920"/>
+    <link rel="stylesheet" href="/resources/lib/jQuery-ui/jquery-ui.css" type="text/css" />
+    <link rel="stylesheet" href="/resources/lib/jQuery/jquery.datetimepicker.css" type="text/css" />
+    <link rel="stylesheet" href="/resources/css/main.css" type="text/css" />
+
+    <script type="text/javascript" src="/resources/lib/jQuery/jquery-2.1.1.min.js"  charset="utf-8"></script>
+
+    <script type="text/javascript" src="/resources/lib/jQuery-ui/jquery-ui.js"  charset="utf-8"></script>
+    <script type="text/javascript" src="/resources/lib/jQuery/jquery.datetimepicker.full.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/resources/lib/jQuery/jquery.datetimepicker.full.min.js" charset="utf-8"></script>
+
+    <script type="text/javascript" src="/resources/lib/highcharts.js "  charset="utf-8"></script>
+    <script type="text/javascript" src="/resources/lib/exporting.js "  charset="utf-8"></script>
+    <script type="text/javascript" src="/resources/lib/offline_exporting.js "  charset="utf-8"></script>
+    <script type="text/javascript" src="/resources/lib/export-csv.js "  charset="utf-8"></script>
+    <script type="text/javascript" src="/resources/lib/no-data-to-display.js "  charset="utf-8"></script>
+
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3790863a0ed838d4ef6464594a86900f"></script>
+
+    <script type="text/javascript">
+        	var  client = 'researcher';
+        </script>
+    <script type="text/javascript" src="/resources/js/common.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/resources/js/getData.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/resources/js/createChart.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/resources/js/main.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/resources/js/calib.js" charset="utf-8"></script>
+
+</head>
+
+
+<body class="back-c-gray">
+<!--wrap 시작-->
+<div class="wrap">
+    <!-- 헤더 시작 -->
+    <div class="header-wrap back-c-white">
+        <div class="clock-wrap back-c-gray">
+            <div class="calendar">
+                <p id="yyyy" class="yyyy font-s20"></p>
+                <p id="mmdd" class="mmdd font-s18"></p>
+            </div>
+            <div id="clock" class="clock">
+
+            </div>
+        </div>
+        <div class="title font-s50">
+            WDP
+        </div>
+        <img src="/resources/images/logo.png">
+    </div>
+    <!-- 헤더 끝 -->
+    <!-- 바디 시작 -->
+    <div class="body-wrap">
+        <!-- 상단 바디 시작 -->
+        <div class="top-body-wrap">
+            <!-- 상단  왼쪽  -->
+            <div class="top-left-body-wrap back-c-white">
+                <div class="sub-title-wrap">
+                    <div class="sub-title">
+                        <img alt="강우량" src="/resources/images/Rainy.png">
+                        <span>
+			   										<span class="font-s21">강우량</span>
+			   										<span class="font-s21 font-c-blue"></span>
+			   										<span class="font-s21">-울산 남구 옥현초등학교 옥상</span>
+		   										</span>
+
+                    </div>
+                    <div class="realtime-wrap">
+                        <div class="realtime-title font-s13">
+                            <span>실시간 기상정보( <span class="realtime"></span> )</span>
+                        </div>
+                        <div class="realtime-content">
+                            <div class="rain-wrap">
+                                <div>
+                                    <img alt="온도" src="/resources/images/temp.png">
+                                    <span class="temp font-s19" id="temp"></span>℃
+                                    <br><span class="font-s11 font-c-red">기온(℃)</span>
+                                </div>
+                                <div>
+                                    <img alt="습도" src="/resources/images/humid.png">
+                                    <span class="humi font-s19" id="humi"></span>%
+                                    <br><span class="font-s11 font-c-blue">습도(%)</span>
+                                </div>
+                                <div>
+                                    <img alt="기압" src="/resources/images/pressure.png">
+                                    <span class="pres font-s19" id="pres"></span>hpa
+                                    <br><span class="font-s11 font-c-green">기온(hpa)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="rain-chart" class="rain-chart">
+                </div>
+            </div>
+            <!-- 상단  왼쪽 끝  -->
+            <!-- 상단  오른쪽  -->
+            <div class="top-right-body-wrap back-c-white">
+                <div class="sub-title-wrap">
+                    <div class="sub-title">
+                        <img src="/resources/images/search.png">
+                        <span class="font-s21">자료 검색</span>
+                    </div>
+                    <div class="search-wrap font-s12">
+                        <div class="param-wrap">
+                            <div class="calendar-wrap">
+                                <input type="hidden" id="hideStartDT" value ="12H">
+                                <input type="hidden" id="hideEndDT" value ="now">
+                                <span>시작일시</span>
+                                <input type="text" id="startDatetime">
+                                <span>종료일시</span>
+                                <input type="text" id="endDatetime">
+                            </div>
+                            <div class="time-wrap">
+                                <button class="h1 btn-off" onClick="fn_timeBtn('1H')">1H</button>
+                                <button class="h2 btn-off" onClick="fn_timeBtn('2H')">2H</button>
+                                <button class="h3 btn-off" onClick="fn_timeBtn('3H')">3H</button>
+                                <button class="h6 btn-off" onClick="fn_timeBtn('6H')">6H</button>
+                                <button class="h12 btn-on"  onClick="fn_timeBtn('12H')">12H</button>
+                                <button class="h24 btn-off" onClick="fn_timeBtn('24H')">24H</button>
+                            </div>
+                        </div>
+                        <div class="btn-wrap">
+                            <div class="btn_wrap2">
+                                <button onClick="fn_searchBtn()" class="search-btn back-c-blue">검색시작</button>
+                                <button onClick="fn_resetBtn()" class="reset-btn back-c-red">초기화</button>
+                                <button onClick="popupOpen()" class="info-btn back-c-yellow">자료 보정</button>
+                            </div>
+                            <div class="btn_wrap2">
+                                <button onClick="fn_dowloadBtn()" class="download-btn back-c-green">엑셀 다운로드</button>
+                                <button onClick="popupOpen2()" class="info-btn back-c-yellow">지점 정보</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="separate back-c-gray"></div>
+                <div id="map" class="map">
+
+                </div>
+            </div>
+            <!-- 상단  오른쪽끝  -->
+        </div>
+        <!-- 상단 바디 끝 -->
+        <!-- 하단 바디 시작 -->
+        <div class="bottom-body-wrap">
+            <!--하단 왼쪽 시작  -->
+            <div class="bottom-left-body-wrap back-c-white">
+                <div class="sub-title-wrap">
+                    <div class="sub-title">
+                        <img src="/resources/images/outflow.png">
+                        <span class="font-s21">지점별 유출량 그래프</span>
+                    </div>
+                </div>
+                <div id="flow-chart" class="flow-chart">
+
+                </div>
+            </div>
+            <!--하단 왼쪽  끝 -->
+            <!--하단 오른쪽 시작  -->
+            <div class="bottom-right-body-wrap back-c-white">
+                <div class="sub-title-wrap">
+                    <div class="radio-btn-wrap">
+												  <span class="lbl_wrap" onclick="fn_radioBtn('01220547764')">
+												    <input type="radio" id="at1" name="radio-group" >
+												    <label for="at1"><span class="font-s13 font-c-blue">─●─지점1 &nbsp;</span><!-- <span>눌재로 6</span> --></label>
+												  </span>
+                        <span class="lbl_wrap" onclick="fn_radioBtn('01220545965')">
+												    <input type="radio" id="at2" name="radio-group">
+												    <label for="at2"><span class="font-s13 font-c-red">─●─지점2 &nbsp;</span><!-- <span>눌재로 11</span> --></label>
+												  </span>
+                        <span class="lbl_wrap" onclick="fn_radioBtn('01220891520')">
+												    <input type="radio" id="at3" name="radio-group">
+												    <label for="at3"><span class="font-s13 font-c-yellow">─●─지점3 &nbsp;</span><!-- <span>남산로 94</span> --></label>
+												  </span>
+                        <span class="lbl_wrap" onclick="fn_radioBtn('01220546731')">
+												    <input type="radio" id="at4" name="radio-group">
+												    <label for="at4"><span class="font-s13 font-c-green">─●─지점4 &nbsp;</span><!-- <span>남산로 106</span> --></label>
+												  </span>
+                        <span class="lbl_wrap" onclick="fn_radioBtn('01232969512')">
+												    <input type="radio" id="at5" name="radio-group">
+												    <label for="at5"><span class="font-s13 font-c-purple">─●─지점5 &nbsp;</span><!-- <span>무거동 1268-17</span> --></label>
+												  </span>
+                        <span class="lbl_wrap" onclick="fn_radioBtn('01232969514')">
+												    <input type="radio" id="at6" name="radio-group">
+												    <label for="at6"><span class="font-s13 font-c-orange">─●─지점6 &nbsp;</span><!-- <span>남산로 150</span> --></label>
+												  </span>
+                        <span class="lbl_wrap" onclick="fn_radioBtn('01232969510')">
+												    <input type="radio" id="at7" name="radio-group" checked>
+												    <label for="at7"><span class="font-s13 font-c-navy">─●─지점7 &nbsp;</span><!-- <span>무거동 1314-1</span> --></label>
+												  </span>
+                        <span class="lbl_wrap" onclick="fn_radioBtn('01232969511')">
+												    <input type="radio" id="at8" name="radio-group">
+												    <label for="at8"><span class="font-s13 font-c-pink">─●─지점8 &nbsp;</span><!-- <span>무거동 1268-2</span> --></label>
+												  </span>
+
+                    </div>
+                </div>
+                <div id="each-chart" class="each-chart">
+
+                </div>
+            </div>
+            <!--하단 오른쪽 끝  -->
+        </div>
+        <!-- 하단 바디 끝 -->
+    </div>
+    <!-- 바디 끝 -->
+</div>
+<!--wrap 끝-->
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <div class="modal-top">
+            <span class="modal-title">자료보정</span>
+            <span onClick="popupClose()" class="close">&times;</span>
+
+            <span class="comment">ㅇ 반드시 위의 지정된 양식을 활용하여 지점별 업로드를 해야 합니다.</span>
+        </div>
+        <div class="calib_proc">
+            <img src="/resources/images/section-01.png">
+        </div>
+        <div class="modalContent">
+            <span class="contentTitle">자료보정 절차</span>
+            <div class="newCalibForm">
+                <span class="newCalbeTitle">신규보정식 입력</span>
+                <select class="snsr_cd"></select>
+                <select class="calibCond">
+                    <option value="수위 < 60mm">수위 &lt; 60mm</option>
+                    <option value="수위 > 60mm">수위 &gt; 60mm</option>
+                </select>
+                <input type="text" class="calibText" placeholder="보정식을 입력하세요."/>
+                <input type="text" class="rSquareVal" placeholder="결정계수"/>
+                <input type="text" class="commitPeriod" placeholder="보정식 적용 기간을 입력하세요."/>
+                <img src="/resources/images/btn-02.png" onClick="submitCalib()" class="submitBtn">
+            </div>
+            <div class="calibInfo">
+                <table class="calibInfoTable">
+                    <thead>
+                    <th width="50">구분</th>
+                    <th width="200">적용조건</th>
+                    <th width="320">보정식(X=수위, y=유속)</th>
+                    <th width="100">결정계수(R²)</th>
+                    <th width="180">활용 데이터</th>
+                    </thead>
+                    <tbody>
+                    <tr class="num_1">
+                        <td rowspan="2">지점1</td>
+                        <td class="conditionVal"></td>
+                        <td class="calibVal"></td>
+                        <td class="correlationVal"></td>
+                        <td class="periodVal"></td>
+                    </tr>
+                    <tr class="num_2">
+                        <td class="conditionVal"></td>
+                        <td class="calibVal"></td>
+                        <td class="correlationVal"></td>
+                        <td class="periodVal"></td>
+                    </tr>
+                    <tr class="num_3">
+                        <td rowspan="2">지점2</td>
+                        <td class="conditionVal"></td>
+                        <td class="calibVal"></td>
+                        <td class="correlationVal"></td>
+                        <td class="periodVal"></td>
+                    </tr>
+                    <tr class="num_4">
+                        <td class="conditionVal"></td>
+                        <td class="calibVal"></td>
+                        <td class="correlationVal"></td>
+                        <td class="periodVal"></td>
+                    </tr>
+                    <tr class="num_5">
+                        <td rowspan="2">지점3</td>
+                        <td class="conditionVal"></td>
+                        <td class="calibVal"></td>
+                        <td class="correlationVal"></td>
+                        <td class="periodVal"></td>
+                    </tr>
+                    <tr class="num_6">
+                        <td class="conditionVal"></td>
+                        <td class="calibVal"></td>
+                        <td class="correlationVal"></td>
+                        <td class="periodVal"></td>
+                    </tr>
+                    <tr class="num_7">
+                        <td>지점4</td>
+                        <td class="conditionVal"></td>
+                        <td class="calibVal"></td>
+                        <td class="correlationVal"></td>
+                        <td class="periodVal"></td>
+                    </tr>
+                    <tr class="num_8">
+                        <td rowspan="2">지점5</td>
+                        <td class="conditionVal"></td>
+                        <td class="calibVal"></td>
+                        <td class="correlationVal"></td>
+                        <td class="periodVal"></td>
+                    </tr>
+                    <tr class="num_9">
+                        <td class="conditionVal"></td>
+                        <td class="calibVal"></td>
+                        <td class="correlationVal"></td>
+                        <td class="periodVal"></td>
+                    </tr>
+                    <tr class="num_10">
+                        <td rowspan="2">지점6</td>
+                        <td class="conditionVal"></td>
+                        <td class="calibVal"></td>
+                        <td class="correlationVal"></td>
+                        <td class="periodVal"></td>
+                    </tr>
+                    <tr class="num_11">
+                        <td class="conditionVal"></td>
+                        <td class="calibVal"></td>
+                        <td class="correlationVal"></td>
+                        <td class="periodVal"></td>
+                    </tr>
+                    <tr class="num_12">
+                        <td rowspan="2">지점7</td>
+                        <td class="conditionVal"></td>
+                        <td class="calibVal"></td>
+                        <td class="correlationVal"></td>
+                        <td class="periodVal"></td>
+                    </tr>
+                    <tr class="num_13">
+                        <td class="conditionVal"></td>
+                        <td class="calibVal"></td>
+                        <td class="correlationVal"></td>
+                        <td class="periodVal"></td>
+                    </tr>
+                    <tr class="num_14">
+                        <td>지점8</td>
+                        <td class="conditionVal"></td>
+                        <td class="calibVal"></td>
+                        <td class="correlationVal"></td>
+                        <td class="periodVal"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="calibUpload">
+                <table class="calibUploadTable">
+                    <thead>
+                    <th width="50">구분</th>
+                    <th width="160">적용조건</th>
+                    <th>관측소별 업로드</th>
+                    <th width="80">양식 다운로드</th>
+                    </thead>
+                    <tbody>
+                    <tr class="num_1">
+                        <td rowspan="2">지점1</td>
+                        <td class="conditionVal"></td>
+                        <td class="uploadTD">
+                            <form	method="post" id="excelUploadForm1" name="excelUploadForm1" enctype="multipart/form-data" action="excelUploadAjax.do" accept-charset="UTF-8" target="ifrm">
+                                <input type="hidden" name="sensor_cd" value="01220547764"/>
+                                <input class="selectFile" type="file" name="file"	/>
+                                <button class="fileSubmitBtn" onClick="calibUpload(this, '지점1')">전송</button>
+                            </form>
+                        </td>
+                        <td rowspan="2">
+                            <button class="fileSubmitBtn formDownBtn" onClick="formDown('/resources/template/calib_template_01.xlsx')">양식 다운</button>
+                        </td>
+                    </tr>
+                    <tr class="num_2">
+                        <td class="conditionVal"></td>
+                        <td class="uploadTD">
+                            <form	method="post" id="excelUploadForm2" name="excelUploadForm2" enctype="multipart/form-data" action="excelUploadAjax.do" accept-charset="UTF-8" target="ifrm">
+                                <input type="hidden" name="sensor_cd" value="01220547764"/>
+                                <input class="selectFile" type="file" name="file"	/>
+                                <button class="fileSubmitBtn" onClick="calibUpload(this, '지점1')">전송</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr class="num_3">
+                        <td rowspan="2">지점2</td>
+                        <td class="conditionVal"></td>
+                        <td class="uploadTD">
+                            <form	method="post" id="excelUploadForm3" name="excelUploadForm3" enctype="multipart/form-data" action="excelUploadAjax.do" accept-charset="UTF-8" target="ifrm">
+                                <input type="hidden" name="sensor_cd" value="01220545965"/>
+                                <input class="selectFile" type="file" name="file"	/>
+                                <button class="fileSubmitBtn" onClick="calibUpload(this, '지점2')">전송</button>
+                            </form>
+                        </td>
+                        <td rowspan="2">
+                            <button class="fileSubmitBtn formDownBtn" onClick="formDown('/resources/template/calib_template_02.xlsx')">양식 다운</button>
+                        </td>
+                    </tr>
+                    <tr class="num_4">
+                        <td class="conditionVal"></td>
+                        <td class="uploadTD">
+                            <form	method="post" id="excelUploadForm4" name="excelUploadForm4" enctype="multipart/form-data" action="excelUploadAjax.do" accept-charset="UTF-8" target="ifrm">
+                                <input type="hidden" name="sensor_cd" value="01220545965"/>
+                                <input class="selectFile" type="file" name="file"	/>
+                                <button class="fileSubmitBtn" onClick="calibUpload(this, '지점2')">전송</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr class="num_5">
+                        <td rowspan="2">지점3</td>
+                        <td class="conditionVal"></td>
+                        <td class="uploadTD">
+                            <form	method="post" id="excelUploadForm5" name="excelUploadForm5" enctype="multipart/form-data" action="excelUploadAjax.do" accept-charset="UTF-8" target="ifrm">
+                                <input type="hidden" name="sensor_cd" value="01220891520"/>
+                                <input class="selectFile" type="file" name="file"	/>
+                                <button class="fileSubmitBtn" onClick="calibUpload(this, '지점3')">전송</button>
+                            </form>
+                        </td>
+                        <td rowspan="2">
+                            <button class="fileSubmitBtn formDownBtn" onClick="formDown('/resources/template/calib_template_03.xlsx')">양식 다운</button>
+                        </td>
+                    </tr>
+                    <tr class="num_6">
+                        <td class="conditionVal"></td>
+                        <td class="uploadTD">
+                            <form	method="post" id="excelUploadForm6" name="excelUploadForm6" enctype="multipart/form-data" action="excelUploadAjax.do" accept-charset="UTF-8" target="ifrm">
+                                <input type="hidden" name="sensor_cd" value="01220891520"/>
+                                <input class="selectFile" type="file" name="file"	/>
+                                <button class="fileSubmitBtn" onClick="calibUpload(this, '지점3')">전송</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr class="num_7">
+                        <td>지점4</td>
+                        <td class="conditionVal"></td>
+                        <td class="uploadTD">
+                            <form	method="post" id="excelUploadForm7" name="excelUploadForm7" enctype="multipart/form-data" action="excelUploadAjax.do" accept-charset="UTF-8" target="ifrm">
+                                <input type="hidden" name="sensor_cd" value="01220546731"/>
+                                <input class="selectFile" type="file" name="file"	/>
+                                <button class="fileSubmitBtn" onClick="calibUpload(this, '지점4')">전송</button>
+                            </form>
+                        </td>
+                        <td>
+                            <button class="fileSubmitBtn formDownBtn" onClick="formDown('/resources/template/calib_template_04.xlsx')">양식 다운</button>
+                        </td>
+                    </tr>
+                    <tr class="num_8">
+                        <td rowspan="2">지점5</td>
+                        <td class="conditionVal"></td>
+                        <td class="uploadTD">
+                            <form	method="post" id="excelUploadForm8" name="excelUploadForm8" enctype="multipart/form-data" action="excelUploadAjax.do" accept-charset="UTF-8" target="ifrm">
+                                <input type="hidden" name="sensor_cd" value="01232969512"/>
+                                <input class="selectFile" type="file" name="file"	/>
+                                <button class="fileSubmitBtn" onClick="calibUpload(this, '지점5')">전송</button>
+                            </form>
+                        </td>
+                        <td rowspan="2">
+                            <button class="fileSubmitBtn formDownBtn" onClick="formDown('/resources/template/calib_template_05.xlsx')">양식 다운</button>
+                        </td>
+                    </tr>
+                    <tr class="num_9">
+                        <td class="conditionVal"></td>
+                        <td class="uploadTD">
+                            <form	method="post" id="excelUploadForm9" name="excelUploadForm9" enctype="multipart/form-data" action="excelUploadAjax.do" accept-charset="UTF-8" target="ifrm">
+                                <input type="hidden" name="sensor_cd" value="01232969512"/>
+                                <input class="selectFile" type="file" name="file"	/>
+                                <button class="fileSubmitBtn" onClick="calibUpload(this, '지점5')">전송</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr class="num_10">
+                        <td rowspan="2">지점6</td>
+                        <td class="conditionVal"></td>
+                        <td class="uploadTD">
+                            <form	method="post" id="excelUploadForm10" name="excelUploadForm10" enctype="multipart/form-data" action="excelUploadAjax.do" accept-charset="UTF-8" target="ifrm">
+                                <input type="hidden" name="sensor_cd" value="01232969514"/>
+                                <input class="selectFile" type="file" name="file"	/>
+                                <button class="fileSubmitBtn" onClick="calibUpload(this, '지점6')">전송</button>
+                            </form>
+                        </td>
+                        <td rowspan="2">
+                            <button class="fileSubmitBtn formDownBtn" onClick="formDown('/resources/template/calib_template_06.xlsx')">양식 다운</button>
+                        </td>
+                    </tr>
+                    <tr class="num_11">
+                        <td class="conditionVal"></td>
+                        <td class="uploadTD">
+                            <form	method="post" id="excelUploadForm11" name="excelUploadForm11" enctype="multipart/form-data" action="excelUploadAjax.do" accept-charset="UTF-8" target="ifrm">
+                                <input type="hidden" name="sensor_cd" value="01232969514"/>
+                                <input class="selectFile" type="file" name="file"	/>
+                                <button class="fileSubmitBtn" onClick="calibUpload(this, '지점6')">전송</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr class="num_12">
+                        <td rowspan="2">지점7</td>
+                        <td class="conditionVal"></td>
+                        <td class="uploadTD">
+                            <form	method="post" id="excelUploadForm12" name="excelUploadForm12" enctype="multipart/form-data" action="excelUploadAjax.do" accept-charset="UTF-8" target="ifrm">
+                                <input type="hidden" name="sensor_cd" value="01232969510"/>
+                                <input class="selectFile" type="file" name="file"	/>
+                                <button class="fileSubmitBtn" onClick="calibUpload(this, '지점7')">전송</button>
+                            </form>
+                        </td>
+                        <td rowspan="2">
+                            <button class="fileSubmitBtn formDownBtn" onClick="formDown('/resources/template/calib_template_07.xlsx')">양식 다운</button>
+                        </td>
+                    </tr>
+                    <tr class="num_13">
+                        <td class="conditionVal"></td>
+                        <td class="uploadTD">
+                            <form	method="post" id="excelUploadForm13" name="excelUploadForm13" enctype="multipart/form-data" action="excelUploadAjax.do" accept-charset="UTF-8" target="ifrm">
+                                <input type="hidden" name="sensor_cd" value="01232969510"/>
+                                <input class="selectFile" type="file" name="file"	/>
+                                <button class="fileSubmitBtn" onClick="calibUpload(this, '지점7')">전송</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr class="num_14">
+                        <td>지점8</td>
+                        <td class="conditionVal"></td>
+                        <td class="uploadTD">
+                            <form	method="post" id="excelUploadForm14" name="excelUploadForm14" enctype="multipart/form-data" action="excelUploadAjax.do" accept-charset="UTF-8" target="ifrm">
+                                <input type="hidden" name="sensor_cd" value="01232969511"/>
+                                <input class="selectFile" type="file" name="file"	/>
+                                <button class="fileSubmitBtn" onClick="calibUpload(this, '지점8')">전송</button>
+                            </form>
+                        </td>
+                        <td>
+                            <button class="fileSubmitBtn formDownBtn" onClick="formDown('/resources/template/calib_template_08.xlsx')" disabled="disabled">양식 다운</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                    <iframe name="ifrm" style="display:none"></iframe>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+<script type="text/javascript" src="/resources/lib/jQuery/jquery.form.js"  charset="utf-8"></script>
+
+</html>

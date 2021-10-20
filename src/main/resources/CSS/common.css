@@ -1,0 +1,142 @@
+/**
+ * Project : 도시방재
+ * File Name : common.css
+ * 작성 : 손화영
+ * 날짜 : 2019.08.02
+ */
+
+@CHARSET "UTF-8";
+
+/* Font 종류 */
+/* letter-spacing */
+
+/* font 크기 */
+.font-s11{
+	font-size: 11px;
+}
+.font-s12{
+	font-size: 12px;
+}
+.font-s13{
+	font-size: 13px;
+}
+.font-s14{
+	font-size: 14px;
+}
+.font-s15{
+	font-size: 15px;
+}
+.font-s16{
+	font-size: 16px;
+}
+.font-s17{
+	font-size: 17px;
+}
+.font-s18{
+	font-size: 18px;
+}
+.font-s19{
+	font-size: 19px;
+}
+.font-s20{
+	font-size: 20px;
+}
+.font-s21{
+	font-size: 21px;
+}
+.font-s30{
+	font-size: 30px;
+}
+.font-s50{
+	font-size: 50px;
+}
+/* font 색깔*/
+.font-c-red{
+	color: #ff5290;
+}
+.font-c-yellow{
+	color: #f9c606;
+}
+.font-c-blue{
+	color: #00aeef;
+}
+.font-c-green{
+	color: #39b54a;
+}
+.font-c-black{
+	color: #414042;
+}
+.font-c-white{
+	color: #fff;
+}
+
+
+.font-c-navy{
+	color: #043FB8 ;
+}
+.font-c-purple{
+	color: #8A3FFC;
+}
+.font-c-orange{
+	color: #FF7B04;
+}
+.font-c-pink{
+	color: #F14DF1;
+}
+
+
+/* 백그라운드 색깔  */
+.back-c-red{
+	background-color: #ff5290;
+}
+.back-c-yellow{
+	background-color: #f9c606;
+}
+.back-c-blue{
+	background-color: #00aeef;
+}
+.back-c-green{
+	background-color: #39b54a;
+}
+.back-c-gray{
+	background-color: #eff0f4;
+}
+.back-c-white{
+	background-color: #fff;
+}
+.back-c-black{
+	background-color: #101010;
+}
+
+
+
+.back-c-navy{
+	color: #043FB8 ;
+}
+.back-c-purple{
+	color: #8A3FFC;
+}
+.back-c-orange{
+	color: #FF7B04;
+}
+.back-c-pink{
+	color: #F14DF1;
+}
+
+
+
+/*button  */
+button{
+	width:85px;
+	height:22px;
+	border-radius: 5px;
+	color: #fff;
+	background-color: #aaa;
+	border: 1px solid #aaa;
+	background-image: linear-gradient(#aaa, #9c9c9c,#aaa);
+}
+.font-normal{
+	font-family:'KoPubDotumMedium';
+}
+
+

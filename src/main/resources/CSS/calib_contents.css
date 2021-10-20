@@ -1,0 +1,235 @@
+/**
+ * Project : 도시방재
+ * File Name : calib_contents.css
+ * 작성 : 정해성
+ * 날짜 : 2020.10.27
+ */
+/* 보정식 입력 창 */
+.modal {
+	font-family: 'KoPubDotumMedium';
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+ }
+
+ /* Modal Content/Box */
+ .modal-content {
+	background-color: #fefefe;
+	margin: 3% auto; /* 15% from the top and centered */
+	padding: 20px;
+	border: 1px solid #888;
+	width: 1484px; /* Could be more or less, depending on screen size */
+	height: 794px; /* Could be more or less, depending on screen size */
+ }
+ /* The Close Button */
+ .close {
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+	line-height: 30px;
+	margin-left: 10px;
+ }
+ .close:hover,
+ .close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+ }
+.modal-content .modal-top{
+	height: 63px;
+}
+
+.modal-content .formDownBtn {
+	cursor: pointer;
+}
+.comment {
+	font-family: Noto Sans CJK KR;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 28px;
+	display: flex;
+	align-items: center;
+	text-align: right;
+	letter-spacing: -0.05em;
+	color: #757575;
+	float: left;
+	clear: both;
+}
+.modal-content .modal-title {
+	float: left;
+	font-family: Noto Sans CJK KR;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 24px;
+	line-height: 24px;
+	color: #161616;
+}
+.modal-content .calib_proc {
+	width: 1278px;
+	height : 133px;
+	margin: 0 auto;
+	margin-bottom: 20px;
+}
+
+.modalContent .contentTitle {
+	float: left;
+	font-family: Noto Sans CJK KR;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 24px;
+	line-height: 24px;
+	/* identical to box height, or 100% */
+	display: flex;
+	align-items: center;
+	color: #262626;
+}
+
+.modalContent .newCalibForm {
+	float: left;
+    clear: both;
+    height: 60px;
+    margin: 20px 0px 16px 0px;
+    width: 1482px;
+    background:#F5F6F8;
+}
+.modalContent .newCalbeTitle {
+	float: left;
+	font-family: Noto Sans CJK KR;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 18px;
+	line-height: 27px;
+	/* identical to box height */
+	color: #161616;
+	margin: 18px 8px 0px 18px;
+	width: 132px;
+}
+
+.modalContent select.snsr_cd {
+	width: 140px;
+	height: 32px;
+	float: left;
+	background: #FFFFFF;
+	border: 1px solid #D9D9D9;
+	box-sizing: border-box;
+	border-radius: 2px;
+	margin: 12px 0px;
+}
+
+.modalContent select.calibCond {
+	width: 200px;
+	height: 32px;
+	float: left;
+	background: #FFFFFF;
+	border: 1px solid #D9D9D9;
+	box-sizing: border-box;
+	border-radius: 2px;
+	margin: 12px 8px;
+}
+
+.modalContent .calibText {
+	float: left;
+	width: 455px;
+	height: 32px;
+	background: #FFFFFF;
+	border: 1px solid #D9D9D9;
+	box-sizing: border-box;
+	border-radius: 2px;
+	margin: 12px 8px;
+	text-indent: 8px;
+}
+
+.modalContent .rSquareVal {
+	float: left;
+	width: 81px;
+	height: 32px;
+	background: #FFFFFF;
+	border: 1px solid #D9D9D9;
+	box-sizing: border-box;
+	border-radius: 2px;
+	margin: 12px 8px;
+	text-indent: 8px;
+}
+.modalContent .commitPeriod {
+	float: left;
+	width: 240px;
+	height: 32px;
+	background: #FFFFFF;
+	border: 1px solid #D9D9D9;
+	box-sizing: border-box;
+	border-radius: 2px;
+	margin: 12px 8px;
+	text-indent: 8px;
+}
+
+.modalContent .submitBtn {
+	cursor:pointer;
+	float: left;
+	height: 32px;
+	margin: 12px 8px;
+}
+
+.modalContent .calibInfo , .modalContent .calibUpload{
+	float: left;
+}
+
+.modalContent .calibInfo{
+	margin-right: 20px;
+}
+
+.calibInfoTable, .calibUploadTable {
+	border-collapse: collapse;
+}
+
+.calibInfoTable th, .calibUploadTable th {
+	border: 1px solid gray;
+	height: 34px;
+	background:#F5F6F8;
+	vertical-align: middle;
+}
+
+.calibInfoTable td, .calibUploadTable td {
+	border: 1px solid gray;
+	height: 29px;
+	vertical-align: middle;
+}
+input.selectFile {
+	cursor:pointer;
+	float:left;
+	width: 250px;
+	border: 1px solid #D9D9D9;
+	box-sizing: border-box;
+	box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.016);
+	border-radius: 2px 0px 0px 2px;
+}
+
+.fileSubmitBtn {
+	cursor:pointer;
+	width: 62px;
+	height: 26px;
+	bottom: 1.5px;
+
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 12px;
+	line-height: 28px;
+	/* identical to box height, or 157% */
+
+	text-align: center;
+
+	color: #FFFFFF;
+
+	background: #1890FF;
+	box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.016);
+	border-radius: 0px 2px 2px 0px;
+}
